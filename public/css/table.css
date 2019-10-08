@@ -1,0 +1,37 @@
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 0;
+}
+
+td .far:before {
+    font-size: 14px !important;
+    margin-left: 10px;
+}
+
+:after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+button.delete {
+    /* display: inline-block; */
+    background: transparent;
+    border: none;
+    color: #3c8dbc;
+}
+
+#example td form {
+    display: inline-block;
+}
+
+.fm-content {
+    overflow: auto;
+}
+/*.http-radio {*/
+/*    position: relative;*/
+/*    top: 3px;*/
+/*    margin-left: 5px !important;*/
+/*}*/
+.checkbox-inline, .radio-inline{
+    font-weight: 700;
+}
