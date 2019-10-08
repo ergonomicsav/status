@@ -81,11 +81,11 @@ class StatusDomainRepository extends CoreRepository
     private function statusStyle($pp)
     {
         if ($pp['status'] == 301 || $pp['status'] == 302 || $pp['status'] == 303) {
-            $pp['statusStyle'] = 'text-warning';
+            $pp['statusStyle'] = 'btn btn-info btn-block';
         } elseif ($pp['status'] == 403 || $pp['status'] == 504 || $pp['status'] == 0) {
-            $pp['statusStyle'] = 'text-danger';
+            $pp['statusStyle'] = 'btn btn-danger btn-block';
         } else {
-            $pp['statusStyle'] = 'text-success';
+            $pp['statusStyle'] = 'btn btn-success btn-block';
         }
         return $pp;
     }

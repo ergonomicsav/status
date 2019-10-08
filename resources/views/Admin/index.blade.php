@@ -14,7 +14,7 @@
 
 @section('content')
     <div class="form-group">
-        <a href="{{route('domains.create')}}" class="btn btn-success">Добавить</a>
+        <a href="{{route('domains.create')}}" class="btn btn-success" title="Добавить домен">Добавить</a>
     </div>
     <table id="example" class="display compact" style="width:100%">
         <thead>
@@ -33,13 +33,13 @@
             <tr @if ($domain['closed'] == 1) style="background-color: #db709345" @endif>
                 <td>{{$domain['id']}}</td>
                 <td><a href="{{$domain['domain']}}" target="_blank" title="Перейти на сайт">{{$domain['name']}}</a></td>
-                <td>{{$domain['ip']}}</td>
-                <td class="{{$domain['statusStyle']}}">{{$domain['status']}}</td>
-                <td class="{{$domain['expirystyle']}}">{{$domain['expiry']}}</td>
+                <td title="ip домена">{{$domain['ip']}}</td>
+                <td><a href="#" class="{{$domain['statusStyle']}}" title="Статус ответа">{{$domain['status']}}</a></td>
+                <td class="{{$domain['expirystyle']}}" title="Дата окончания срока регистрации домена">{{$domain['expiry']}}</td>
                 @if($domain['ssltime'] == '0')
-                    <td {{$domain['sslstyle']}}>N/A</td>
+                    <td {{$domain['sslstyle']}} title="Без сертификата">N/A</td>
                 @else
-                    <td class="{{$domain['sslstyle']}}">{{$domain['ssltime']}}</td>
+                    <td class="{{$domain['sslstyle']}}" title="Дата окончания сертификата">{{$domain['ssltime']}}</td>
                 @endif
                 <td><a href="{{route('domains.edit', $domain['id'])}}" class="far fa-edit" title="Редактировать"></a>
                     <form method="post" action="{{route('domains.destroy', $domain['id'])}}">
