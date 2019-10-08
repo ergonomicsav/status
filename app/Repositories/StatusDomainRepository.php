@@ -38,6 +38,7 @@ class StatusDomainRepository extends CoreRepository
             $pp = collect($dm);
             $pp = $this->expiryStyle($pp);
             $pp = $this->ssltimeStyle($pp);
+            $pp = $this->statusStyle($pp);
             $aa[] = $pp;
         }
         return $aa;
@@ -77,11 +78,22 @@ class StatusDomainRepository extends CoreRepository
         return $pp;
     }
 
+    private function statusStyle($pp)
+    {
+        if ($pp['status'] == 301 || $pp['status'] == 302 || $pp['status'] == 303) {
+            $pp['statusStyle'] = 'text-warning';
+        } elseif ($pp['status'] == 403 || $pp['status'] == 504 || $pp['status'] == 0) {
+            $pp['statusStyle'] = 'text-danger';
+        } else {
+            $pp['statusStyle'] = 'text-success';
+        }
+        return $pp;
+    }
+
     /**
      * @param $nameDomain
      */
-    public
-    function storeDomain($nameDomain)
+    public function storeDomain($nameDomain)
     {
         $new_request = $nameDomain->all();
         $trimName = trim($new_request['name']);
@@ -92,14 +104,21 @@ class StatusDomainRepository extends CoreRepository
         return $new_request;
     }
 
-    public
-    function updateDomain($item)
+    public function updateDomain($item)
     {
         $new_request = $item->all();
         $trimName = trim($new_request['name']);
         $new_request['domain'] = $new_request['domain'] . $trimName;
         $dm = str_replace('/', '-', $trimName);
         $new_request['namefolder'] = $dm;
+        if ($new_request['manual'] == 1) $new_request['expiry'] = strtotime($new_request['expiry']);
         return $new_request;
+    }
+
+    public function preparationDataEditing($item)
+    {
+        $item->expiry = date('Y-m-d', $item->expiry);
+        $item->radio = parse_url($item->domain, PHP_URL_SCHEME);
+        return $item;
     }
 }

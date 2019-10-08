@@ -67,7 +67,9 @@ class DomainController extends BaseController
      */
     public function edit(Domain $domain)
     {
-        return view('Admin.edit', ['domain' => $domain]);
+        $domain = $this->statusDomainRepository->preparationDataEditing($domain);
+
+        return view('Admin.edit', compact('domain'));
     }
 
     /**

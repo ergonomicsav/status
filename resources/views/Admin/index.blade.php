@@ -34,18 +34,8 @@
                 <td>{{$domain['id']}}</td>
                 <td><a href="{{$domain['domain']}}" target="_blank" title="Перейти на сайт">{{$domain['name']}}</a></td>
                 <td>{{$domain['ip']}}</td>
-                @if ($domain['status'] == 301 || $domain['status'] == 302 || $domain['status'] == 303)
-                    <td class="text-warning">{{$domain['status']}}</td>
-                @elseif ($domain['status'] == 403 || $domain['status'] == 504 || $domain['status'] == 0)
-                    <td class="text-danger">{{$domain['status']}}</td>
-                @else
-                    <td class="text-success">{{$domain['status']}}</td>
-                @endif
-                @if($domain['expiry'] == '0')
-                    <td {{$domain['expirystyle']}}>ручками</td>
-                @else
-                    <td class="{{$domain['expirystyle']}}">{{$domain['expiry']}}</td>
-                @endif
+                <td class="{{$domain['statusStyle']}}">{{$domain['status']}}</td>
+                <td class="{{$domain['expirystyle']}}">{{$domain['expiry']}}</td>
                 @if($domain['ssltime'] == '0')
                     <td {{$domain['sslstyle']}}>N/A</td>
                 @else
