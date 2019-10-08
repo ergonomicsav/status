@@ -88,6 +88,7 @@ class StatusDomainRepository extends CoreRepository
         $new_request['domain'] = $new_request['domain'] . $trimName;
         $dm = str_replace('/', '-', $trimName);
         $new_request['namefolder'] = $dm;
+        if ($new_request['manual'] == 1) $new_request['expiry'] = strtotime($new_request['expiry']);
         return $new_request;
     }
 

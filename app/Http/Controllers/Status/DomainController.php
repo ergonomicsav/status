@@ -53,7 +53,6 @@ class DomainController extends BaseController
      */
     public function store(StatusDomainStoreRequest $request)
     {
-        dd($request->all());
         $domain = $this->statusDomainRepository->storeDomain($request);
         Domain::create($domain);
         Storage::disk('logs')->makeDirectory($domain['namefolder']);
