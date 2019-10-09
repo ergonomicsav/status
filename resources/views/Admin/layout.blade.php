@@ -22,9 +22,4 @@
             $('#example').DataTable();
         });
     </script>
-    <script>
-        let expiryInput = document.getElementById('expiry');
-        let fiveCheckbox = document.getElementById('five-visible');
-        fiveCheckbox.checked ? expiryInput.disabled = false : expiryInput.disabled = true;
-    </script>
 @stop
