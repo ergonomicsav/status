@@ -35,3 +35,9 @@ button.delete {
 .checkbox-inline, .radio-inline{
     font-weight: 700;
 }
+@media (min-width: 768px) {
+    .modal-dialog {
+        width: 80%;
+        margin: 30px auto;
+    }
+}
