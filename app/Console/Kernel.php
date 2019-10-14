@@ -36,6 +36,10 @@ class Kernel extends ConsoleKernel
 //            ->everyMinute()
             ->dailyAt('10:30')
             ->appendOutputTo('public/vendor/error.log');
+        $schedule->command('command:botmonitoring')
+//            ->everyMinute()
+            ->hourlyAt(17)
+        ->appendOutputTo('public/vendor/error.log');
     }
 
     /**

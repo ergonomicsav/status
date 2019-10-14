@@ -1,23 +1,69 @@
 
-   UnexpectedValueException  : The stream or file "/home/vlad/www/status/storage/logs/laravel-2019-10-08.log" could not be opened: failed to open stream: Permission denied
+   InvalidArgumentException  : Invalid test syntax
 
-  at /home/vlad/www/status/vendor/monolog/monolog/src/Monolog/Handler/StreamHandler.php:107
-    103|             }
-    104|             restore_error_handler();
-    105|             if (!is_resource($this->stream)) {
-    106|                 $this->stream = null;
-  > 107|                 throw new \UnexpectedValueException(sprintf('The stream or file "%s" could not be opened: '.$this->errorMessage, $this->url));
-    108|             }
-    109|         }
-    110| 
-    111|         if ($this->useLocking) {
+  at /home/vlad/www/status/app/Console/Commands/RunScannerExpiryDomain.php:90
+    86|         ) {
+    87|             $this->subDomain = $matches[1];
+    88|             $this->TLDs = $matches[2];
+    89|         } else
+  > 90|             throw new \InvalidArgumentException("Invalid $domain syntax");
+    91| 
+    92|         if ($this->isValid($this->TLDs) == true) {
+    93|             $isTld = $this->TLDs;
+    94|             $whois_server = $this->servers->$isTld[0];
 
   Exception trace:
 
-  1   Monolog\Handler\StreamHandler::write()
-      /home/vlad/www/status/vendor/monolog/monolog/src/Monolog/Handler/RotatingFileHandler.php:119
+  1   App\Console\Commands\RunScannerExpiryDomain::parser("test")
+      /home/vlad/www/status/app/Console/Commands/RunScannerExpiryDomain.php:55
 
-  2   Monolog\Handler\RotatingFileHandler::write()
-      /home/vlad/www/status/vendor/monolog/monolog/src/Monolog/Handler/AbstractProcessingHandler.php:39
+  2   App\Console\Commands\RunScannerExpiryDomain::handle()
+      /home/vlad/www/status/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:32
+
+  Please use the argument -v to see more details.
+
+   InvalidArgumentException  : Invalid test syntax
+
+  at /home/vlad/www/status/app/Console/Commands/RunScannerExpiryDomain.php:90
+    86|         ) {
+    87|             $this->subDomain = $matches[1];
+    88|             $this->TLDs = $matches[2];
+    89|         } else
+  > 90|             throw new \InvalidArgumentException("Invalid $domain syntax");
+    91| 
+    92|         if ($this->isValid($this->TLDs) == true) {
+    93|             $isTld = $this->TLDs;
+    94|             $whois_server = $this->servers->$isTld[0];
+
+  Exception trace:
+
+  1   App\Console\Commands\RunScannerExpiryDomain::parser("test")
+      /home/vlad/www/status/app/Console/Commands/RunScannerExpiryDomain.php:55
+
+  2   App\Console\Commands\RunScannerExpiryDomain::handle()
+      /home/vlad/www/status/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:32
+
+  Please use the argument -v to see more details.
+
+   InvalidArgumentException  : Invalid test syntax
+
+  at /home/vlad/www/status/app/Console/Commands/RunScannerExpiryDomain.php:90
+    86|         ) {
+    87|             $this->subDomain = $matches[1];
+    88|             $this->TLDs = $matches[2];
+    89|         } else
+  > 90|             throw new \InvalidArgumentException("Invalid $domain syntax");
+    91| 
+    92|         if ($this->isValid($this->TLDs) == true) {
+    93|             $isTld = $this->TLDs;
+    94|             $whois_server = $this->servers->$isTld[0];
+
+  Exception trace:
+
+  1   App\Console\Commands\RunScannerExpiryDomain::parser("test")
+      /home/vlad/www/status/app/Console/Commands/RunScannerExpiryDomain.php:55
+
+  2   App\Console\Commands\RunScannerExpiryDomain::handle()
+      /home/vlad/www/status/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:32
 
   Please use the argument -v to see more details.
