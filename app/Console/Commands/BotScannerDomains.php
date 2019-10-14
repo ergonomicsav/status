@@ -39,17 +39,17 @@ class BotScannerDomains extends Command
      */
     public function handle()
     {
-        $arrDomains = Domain::where('status', '!=', [200,302])->get();
+        $arrDomains = Domain::whereNotIn('status', [200])->get();
         $arr = $arrDomains->sortByDesc('status')->pluck('status', 'domain');
         $message = '<b>Мониторинг</b>' . PHP_EOL;
         foreach ($arr as $domain => $status){
             $message .= $domain . ' &gt; ' . '<b>' . $status . '</b>' . PHP_EOL;
         }
         $message = trim($message);
-//        dd($y);
         Telegram::sendMessage([
             'chat_id' => '-320333662',
             'parse_mode' => 'HTML',
+            'disable_web_page_preview' => true,
             'text' => $message,
         ]);
     }
