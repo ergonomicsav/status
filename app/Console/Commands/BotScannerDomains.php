@@ -42,8 +42,10 @@ class BotScannerDomains extends Command
         $arrDomains = Domain::whereNotIn('status', [200])->get();
         $arr = $arrDomains->sortByDesc('status')->pluck('status', 'domain');
         $message = '<b>Мониторинг</b>' . PHP_EOL;
+        $i =1;
         foreach ($arr as $domain => $status){
-            $message .= $domain . ' &gt; ' . '<b>' . $status . '</b>' . PHP_EOL;
+            $message .= $i . '. ' . $domain . ' = ' . '<b>' . $status . '</b>' . PHP_EOL;
+            $i++;
         }
         $message = trim($message);
         Telegram::sendMessage([
