@@ -45,7 +45,7 @@ class BotScannerSLL extends Command
     public function handle()
     {
         $arrDomains = Domain::whereNotIn('ssltime', [0])->get();
-        $arr = $arrDomains->sortByDesc('ssltime')->pluck('ssltime', 'domain');
+        $arr = $arrDomains->sortBy('ssltime')->pluck('ssltime', 'domain');
         $message = '<b>SSL сертификат - осталось дней</b>' . PHP_EOL;
         $i = 1;
         foreach ($arr as $domain => $ssltime) {
