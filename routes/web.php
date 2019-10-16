@@ -11,11 +11,13 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+
 Route::group(['namespace' => 'Status'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::resources([
