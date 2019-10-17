@@ -29,7 +29,7 @@ class StatusDomainRepository extends CoreRepository
 //            $dm->save();
 //        }
 //        dd($dms->pluck('ssltime')->all());
-        $fields = ['id', 'name', 'ip', 'expiry', 'status', 'namefolder', 'domain', 'ssltime', 'closed'];
+        $fields = ['id', 'name', 'ip', 'expiry', 'status', 'namefolder', 'domain', 'ssltime', 'closed', 'redirect_url'];
         $dms = $this->startConditions()->all($fields);
 //        $dms = $this->startConditions()->select($fields)->paginate(25);
         $this->date1 = Carbon::now();

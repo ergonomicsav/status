@@ -23,6 +23,7 @@
             <th>Домен</th>
             <th>ip</th>
             <th>Статус</th>
+            <th>URI редирект</th>
             <th>Срок действия</th>
             <th>SSL Статус</th>
             <th>Действия</th>
@@ -35,6 +36,7 @@
                 <td><a href="{{$domain['domain']}}" target="_blank" title="Перейти на сайт">{{$domain['name']}}</a></td>
                 <td title="ip домена">{{$domain['ip']}}</td>
                 <td><a href="#" class="{{$domain['statusStyle']}}" title="Статус ответа">{{$domain['status']}}</a></td>
+                <td title="Конечный сайт">{{$domain['redirect_url']}}</td>
                 <td class="{{$domain['expirystyle']}}" title="Дата окончания срока регистрации домена">{{$domain['expiry']}}</td>
                 @if($domain['ssltime'] == '0')
                     <td {{$domain['sslstyle']}} title="Без сертификата">N/A</td>
@@ -60,6 +62,7 @@
             <th>Домен</th>
             <th>ip</th>
             <th>Статус</th>
+            <th>URI редирект</th>
             <th>Срок действия</th>
             <th>SSL Статус</th>
             <th>Действия</th>

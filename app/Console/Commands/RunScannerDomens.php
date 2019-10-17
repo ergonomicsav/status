@@ -64,7 +64,7 @@ class RunScannerDomens extends Command
         foreach (array_keys($ch) as $key) {
             $reportArray[] = [
                 'httpCode' => curl_getinfo($ch[$key], CURLINFO_HTTP_CODE),
-//                'time' => date('H:i:s d/m/Y'),
+                'redirect_url' => curl_getinfo($ch[$key], CURLINFO_REDIRECT_URL),
                 'id' => $key,
                 'ip' => curl_getinfo($ch[$key], CURLINFO_PRIMARY_IP)
             ];
@@ -84,12 +84,11 @@ class RunScannerDomens extends Command
 
     private function updToBd($items)
     {
-
         if ($items) {
             foreach ($items as $var) {
                 $domains = Domain::find($var['id']);
                 $domains->ip = $var['ip'];
-//                $domains->date = $var['time'];
+                $domains->redirect_url = $var['redirect_url'] ? $var['redirect_url'] : 'нет';
                 $domains->status = $var['httpCode'];
                 $domains->save();
             }

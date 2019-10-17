@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Domain extends Model
 {
-    protected $fillable = ['name', 'namefolder', 'domain', 'closed', 'expiry', 'manual'];
+    protected $fillable = ['name', 'namefolder', 'domain', 'closed', 'expiry', 'manual', 'redirect_url'];
 
 }
