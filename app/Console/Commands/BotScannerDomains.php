@@ -39,7 +39,7 @@ class BotScannerDomains extends Command
      */
     public function handle()
     {
-        $arrDomains = Domain::whereNotIn('status', [200])->get();
+        $arrDomains = Domain::whereNotIn('status', [200, 301])->get();
         $arr = $arrDomains->sortByDesc('status')->pluck('status', 'domain');
         $message = '<b>Мониторинг</b>' . PHP_EOL;
         $i =1;
@@ -48,11 +48,13 @@ class BotScannerDomains extends Command
             $i++;
         }
         $message = trim($message);
-        Telegram::sendMessage([
-            'chat_id' => '-320333662',
-            'parse_mode' => 'HTML',
-            'disable_web_page_preview' => true,
-            'text' => $message,
-        ]);
+        if (strip_tags($message) != 'Мониторинг'){
+            Telegram::sendMessage([
+                'chat_id' => '-320333662',
+                'parse_mode' => 'HTML',
+                'disable_web_page_preview' => true,
+                'text' => $message,
+            ]);
+        }
     }
 }
