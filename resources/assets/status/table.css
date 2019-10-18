@@ -41,3 +41,7 @@ button.delete {
         margin: 30px auto;
     }
 }
+
+.bg-danger {
+    background-color: #f2dede !important;
+}
