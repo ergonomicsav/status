@@ -52,7 +52,7 @@ class StatusDomainRepository extends CoreRepository
         }
         $date2 = Carbon::createFromTimestamp($pp['expiry']);
         $diffDays = $this->date1->diffInDays($date2);
-        $pp['expiry'] = date('d-m-Y', $pp['expiry']);
+        $pp['expiry'] = date('Y-m-d', $pp['expiry']);
         if ($diffDays > 30) {
             $pp['expirystyle'] = 'text-success';
         } else {
@@ -69,7 +69,7 @@ class StatusDomainRepository extends CoreRepository
         }
         $date2 = Carbon::createFromTimestamp($pp['ssltime']);
         $diffDays = $this->date1->diffInDays($date2);
-        $pp['ssltime'] = date('d-m-Y', $pp['ssltime']);
+        $pp['ssltime'] = date('Y-m-d', $pp['ssltime']);
         if ($diffDays > 7) {
             $pp['sslstyle'] = 'text-success';
         } else {
