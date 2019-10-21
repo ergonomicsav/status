@@ -1,5 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/css/table.css": "/css/table.css"
+    "/vendor/adminlte/plugins/DataTables-1.10.20/js/datatables.js": "/vendor/adminlte/plugins/DataTables-1.10.20/js/datatables.js",
+    "/css/table.css": "/css/table.css",
+    "/vendor/adminlte/plugins/DataTables-1.10.20/css/datatables.css": "/vendor/adminlte/plugins/DataTables-1.10.20/css/datatables.css"
 }

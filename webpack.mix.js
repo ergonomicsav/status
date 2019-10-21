@@ -14,4 +14,6 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js').sass('resources/sass/app.scss', 'public/css');
 // mix.styles(['resources/assets/status/vendor/file-manager/css/file-manager.css'], 'public/vendor/file-manager/css/file-manager.css');
 mix.styles(['resources/assets/status/table.css'], 'public/css/table.css' );
+mix.styles(['resources/assets/status/DataTables-1.10.20/css/datatables.css'], 'public/vendor/adminlte/plugins/DataTables-1.10.20/css/datatables.css' );
 // mix.copy('resources/assets/report.json', 'public/report.json');
+mix.js('resources/assets/status/DataTables-1.10.20/js/datatables.js', 'public/vendor/adminlte/plugins/DataTables-1.10.20/js/datatables.js');
