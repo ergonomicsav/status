@@ -25,7 +25,7 @@ class StatusDomainStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => 'required|unique:domains',
             'domain' => 'required'
         ];
     }
