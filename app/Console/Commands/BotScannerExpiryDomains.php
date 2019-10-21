@@ -46,7 +46,7 @@ class BotScannerExpiryDomains extends Command
     {
         $arrDomains = Domain::all();
         $arr = $arrDomains->sortBy('expiry')->pluck('expiry', 'domain');
-        $message = '<b>Срок регистрации домена - осталось дней</b>' . PHP_EOL;
+        $message = '';
         $i = 1;
         foreach ($arr as $domain => $ssltime) {
             $date2 = Carbon::createFromTimestamp($ssltime);
@@ -55,14 +55,15 @@ class BotScannerExpiryDomains extends Command
             $message .= $i . '. ' . $domain . ' - ' . '<b>' . $diffDays . '</b>' . PHP_EOL;
             $i++;
         }
-//        dd($message);
-
-        $message = trim($message);
-        Telegram::sendMessage([
-            'chat_id' => '-320333662',
-            'parse_mode' => 'HTML',
-            'disable_web_page_preview' => true,
-            'text' => $message,
-        ]);
+        $title = '<b>Срок регистрации домена - осталось дней</b>' . PHP_EOL;
+        if (!empty($message)){
+            $message = $title . $message;
+            Telegram::sendMessage([
+                'chat_id' => '-320333662',
+                'parse_mode' => 'HTML',
+                'disable_web_page_preview' => true,
+                'text' => $message,
+            ]);
+        }
     }
 }
