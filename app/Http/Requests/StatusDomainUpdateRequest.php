@@ -25,7 +25,7 @@ class StatusDomainUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:domains',
+            'name' => 'required',
             'domain' => 'required'
         ];
     }

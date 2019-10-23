@@ -8,16 +8,19 @@ use App\Models\Domain;
 use Illuminate\Support\Facades\Cache;
 use \Storage;
 use App\Repositories\StatusDomainRepository;
+use App\Repositories\SslScannerProcessing;
 
 class DomainController extends BaseController
 {
     private $statusDomainRepository;
+    private $sslScannerProcessing;
 
     public function __construct()
     {
         $this->middleware('auth');
 //        $this->statusDomainRepository = new StatusDomainRepository();
         $this->statusDomainRepository = app(StatusDomainRepository::class);
+        $this->sslScannerProcessing = app(SslScannerProcessing::class);
     }
 
     /**
@@ -53,9 +56,10 @@ class DomainController extends BaseController
      */
     public function store(StatusDomainStoreRequest $request)
     {
-        $domain = $this->statusDomainRepository->storeDomain($request);
-        Domain::create($domain);
-        Storage::disk('logs')->makeDirectory($domain['namefolder']);
+        $valueArr = $this->statusDomainRepository->storeDomain($request);
+        $domain = Domain::create($valueArr);
+        $this->sslScannerProcessing->processing($domain);
+        Storage::disk('logs')->makeDirectory($valueArr['namefolder']);
         return redirect()->route('domains.index');
     }
 
