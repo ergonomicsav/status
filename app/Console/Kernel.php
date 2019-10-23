@@ -34,15 +34,15 @@ class Kernel extends ConsoleKernel
         $schedule->command('command:expiry')
             ->dailyAt('10:30')
             ->appendOutputTo('public/vendor/error.log');
-        $schedule->command('command:botmonitoring')
-            ->hourlyAt(17)
-        ->appendOutputTo('public/vendor/error.log');
-        $schedule->command('command:botssl')
-            ->dailyAt('8:00')
-            ->appendOutputTo('public/vendor/error.log');
-        $schedule->command('command:botexpiry')
-            ->dailyAt('9:00')
-            ->appendOutputTo('public/vendor/error.log');
+//        $schedule->command('command:botmonitoring')
+//            ->hourlyAt(17)
+//        ->appendOutputTo('public/vendor/error.log');
+//        $schedule->command('command:botssl')
+//            ->dailyAt('8:00')
+//            ->appendOutputTo('public/vendor/error.log');
+//        $schedule->command('command:botexpiry')
+//            ->dailyAt('9:00')
+//            ->appendOutputTo('public/vendor/error.log');
     }
 
     /**
