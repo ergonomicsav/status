@@ -14,9 +14,9 @@ class DomainsScannerProcessing extends CoreRepository
         return Model::class;
     }
 
-    public function processing($domainss)
+    public function processing($domains)
     {
-        $dms = $domainss->pluck('domain', 'id');
+        $dms = $domains->pluck('domain', 'id');
         $mh = curl_multi_init();
         foreach ($dms as $key => $value) {
             $ch[$key] = curl_init($value);
