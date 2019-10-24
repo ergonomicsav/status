@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Status;
 use App\Http\Requests\StatusDomainStoreRequest;
 use App\Http\Requests\StatusDomainUpdateRequest;
 use App\Models\Domain;
+use App\Repositories\ExpiryScannerProcessing;
 use Illuminate\Support\Facades\Cache;
 use \Storage;
 use App\Repositories\StatusDomainRepository;
@@ -14,6 +15,7 @@ class DomainController extends BaseController
 {
     private $statusDomainRepository;
     private $sslScannerProcessing;
+    private $expiryScannerProcessing;
 
     public function __construct()
     {
@@ -21,6 +23,7 @@ class DomainController extends BaseController
 //        $this->statusDomainRepository = new StatusDomainRepository();
         $this->statusDomainRepository = app(StatusDomainRepository::class);
         $this->sslScannerProcessing = app(SslScannerProcessing::class);
+        $this->expiryScannerProcessing = app(ExpiryScannerProcessing::class);
     }
 
     /**
@@ -59,6 +62,7 @@ class DomainController extends BaseController
         $valueArr = $this->statusDomainRepository->storeDomain($request);
         $domain = Domain::create($valueArr);
         $this->sslScannerProcessing->processing($domain);
+        $this->expiryScannerProcessing->processing($domain);
         Storage::disk('logs')->makeDirectory($valueArr['namefolder']);
         return redirect()->route('domains.index');
     }

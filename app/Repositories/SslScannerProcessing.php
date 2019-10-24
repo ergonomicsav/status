@@ -4,7 +4,6 @@
 namespace App\Repositories;
 
 use App\Models\Domain as Model;
-use App\Models\Domain;
 
 class SslScannerProcessing extends CoreRepository
 {
@@ -13,7 +12,7 @@ class SslScannerProcessing extends CoreRepository
         return Model::class;
     }
 
-    public function processing(Domain $dms)
+    public function processing(Model $dms)
     {
         if ($dms->closed == 1 || parse_url($dms->domain, PHP_URL_SCHEME) == 'http') {
             $validTo_time = 0;
