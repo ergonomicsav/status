@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Domain;
-use App\Repositories\DomainsScannerProcessing;
+use App\Repositories\CollectionProcessing;
 use Illuminate\Console\Command;
 
 
@@ -23,7 +23,7 @@ class RunScannerDomens extends Command
      */
     protected $description = 'Domain scanning for monitoring purposes';
 
-    private $domainsScannerProcessing;
+    private $collectionProcessing;
 
     /**
      * Create a new command instance.
@@ -33,7 +33,7 @@ class RunScannerDomens extends Command
     public function __construct()
     {
         parent::__construct();
-        $this->domainsScannerProcessing = app(DomainsScannerProcessing::class);
+        $this->collectionProcessing = app(CollectionProcessing::class);
     }
 
     /**
@@ -44,7 +44,7 @@ class RunScannerDomens extends Command
     public function handle()
     {
         $domains = Domain::all();
-        $this->domainsScannerProcessing->processing($domains);
+        $this->collectionProcessing->processing($domains);
     }
 
 }
