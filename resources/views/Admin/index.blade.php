@@ -7,10 +7,10 @@
             <a href="{{route('domains.create')}}" class="btn btn-success" title="Добавить домен">Добавить домен</a>
         </div>
         <div class="form-group">
-            <a href="{{route('domains.create')}}" class="btn btn-success" title="Добавить домен">Обновить период регистрации доменов</a>
+            <a href="#" class="btn btn-success" title="Добавить домен">Обновить период регистрации доменов</a>
         </div>
         <div class="form-group">
-            <a href="{{route('domains.create')}}" class="btn btn-success" title="Добавить домен">Обновить SSL статус</a>
+            <a href="#" class="btn btn-success" title="Добавить домен">Обновить SSL статус</a>
         </div>
         <dl class="dl-horizontal form-group pull-right">
             <dt>Дата</dt>
