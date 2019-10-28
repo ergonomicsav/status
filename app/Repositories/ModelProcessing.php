@@ -16,15 +16,15 @@ class ModelProcessing extends DomainsScannerProcessing
 
         $mh = curl_multi_init();
 //        foreach ($dms as $key => $value) {
-            $ch[$domains->id] = curl_init($domains->domain);
-            curl_setopt($ch[$domains->id], CURLOPT_NOBODY, true);
-            curl_setopt($ch[$domains->id], CURLOPT_HEADER, true);
-            curl_setopt($ch[$domains->id], CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch[$domains->id], CURLOPT_SSL_VERIFYPEER, false);
-            curl_setopt($ch[$domains->id], CURLOPT_SSL_VERIFYHOST, false);
+        $ch[$domains->id] = curl_init($domains->domain);
+        curl_setopt($ch[$domains->id], CURLOPT_NOBODY, true);
+        curl_setopt($ch[$domains->id], CURLOPT_HEADER, true);
+        curl_setopt($ch[$domains->id], CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch[$domains->id], CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch[$domains->id], CURLOPT_SSL_VERIFYHOST, false);
 //            curl_setopt($ch[$domains->id], CURLOPT_FOLLOWLOCATION, true);
 
-            curl_multi_add_handle($mh, $ch[$domains->id]);
+        curl_multi_add_handle($mh, $ch[$domains->id]);
 //        }
 
 // Запустк
@@ -37,10 +37,10 @@ class ModelProcessing extends DomainsScannerProcessing
 // Собираем массив для БД
         foreach (array_keys($ch) as $domains->id) {
             $reportArray[] = [
-                'httpCode' => curl_getinfo($ch[$domains->id], CURLINFO_HTTP_CODE),
+                'httpCode'     => curl_getinfo($ch[$domains->id], CURLINFO_HTTP_CODE),
                 'redirect_url' => curl_getinfo($ch[$domains->id], CURLINFO_REDIRECT_URL),
-                'id' => $domains->id,
-                'ip' => curl_getinfo($ch[$domains->id], CURLINFO_PRIMARY_IP)
+                'id'           => $domains->id,
+                'ip'           => curl_getinfo($ch[$domains->id], CURLINFO_PRIMARY_IP)
             ];
 
             curl_multi_remove_handle($mh, $ch[$domains->id]);

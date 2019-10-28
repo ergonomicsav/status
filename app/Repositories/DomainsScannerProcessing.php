@@ -13,14 +13,14 @@ class DomainsScannerProcessing extends CoreRepository
         return Model::class;
     }
 
-     protected function updToBd($items)
+    protected function updToBd($items)
     {
         if ($items) {
             foreach ($items as $var) {
-                $domains = Model::find($var['id']);
-                $domains->ip = $var['ip'];
+                $domains               = Model::find($var['id']);
+                $domains->ip           = $var['ip'];
                 $domains->redirect_url = $var['redirect_url'] ? $var['redirect_url'] : 'нет';
-                $domains->status = $var['httpCode'];
+                $domains->status       = $var['httpCode'];
                 $domains->save();
             }
         }

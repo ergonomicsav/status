@@ -18,6 +18,6 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->describe('Display an inspiring quote');
 
-//Artisan::command('command:monitoring', function () {
-//    $this->comment(RunScannerDomens::quote());
-//})->describe('Display an inspiring quote');
+Artisan::command('monitoring', function () {
+    $this->comment(Inspiring::quote());
+})->describe('Цитаты великих людей');

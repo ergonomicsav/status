@@ -20,10 +20,10 @@ class SslScannerProcessing extends CoreRepository
             return;
         }
         $orignal_parse = parse_url($dms->domain, PHP_URL_HOST);
-        $get = stream_context_create(array("ssl" => array("capture_peer_cert" => TRUE)));
-        $read = stream_socket_client("ssl://" . $orignal_parse . ":443", $errno, $errstr, 30, STREAM_CLIENT_CONNECT, $get);
-        $cert = stream_context_get_params($read);
-        $certinfo = openssl_x509_parse($cert['options']['ssl']['peer_certificate']);
+        $get           = stream_context_create(["ssl" => ["capture_peer_cert" => TRUE]]);
+        $read          = stream_socket_client("ssl://" . $orignal_parse . ":443", $errno, $errstr, 30, STREAM_CLIENT_CONNECT, $get);
+        $cert          = stream_context_get_params($read);
+        $certinfo      = openssl_x509_parse($cert['options']['ssl']['peer_certificate']);
         if ($certinfo == false) {
             $validTo_time = -1;
             $this->upddateSll($dms->id, $validTo_time);
@@ -36,7 +36,7 @@ class SslScannerProcessing extends CoreRepository
 
     private function upddateSll($id, $val)
     {
-        $domains = $this->startConditions()::find($id);
+        $domains          = $this->startConditions()::find($id);
         $domains->ssltime = $val;
         $domains->save();
 

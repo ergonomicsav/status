@@ -28,23 +28,23 @@ class ExpiryScannerProcessing extends CoreRepository
     public function processing(Model $domains)
     {
 
-            $whois_string = $this->parser($domains->name);
-            if ($whois_string == "Domain name isn't valid!") {
+        $whois_string = $this->parser($domains->name);
+        if ($whois_string == "Domain name isn't valid!") {
 //                $finish[$domains->name] = 'ручками';
-                $finish[$domains->id] = 0;
-                return;
-            }
-            $not_found_string = '';
-            $tld = $this->TLDs;
-            if (isset($this->servers->$tld[2])) {
-                $not_found_string = $this->servers->$tld[2];
-            }
-            if (preg_match($not_found_string, $whois_string, $matches)) {
-                $matches[1] = (strpos($matches[1], '.') == true) ? str_replace('.', '-', $matches[1]) : $matches[1];
-                $time = strtotime(trim($matches[1]));
+            $finish[$domains->id] = 0;
+            return;
+        }
+        $not_found_string = '';
+        $tld              = $this->TLDs;
+        if (isset($this->servers->$tld[2])) {
+            $not_found_string = $this->servers->$tld[2];
+        }
+        if (preg_match($not_found_string, $whois_string, $matches)) {
+            $matches[1] = (strpos($matches[1], '.') == true) ? str_replace('.', '-', $matches[1]) : $matches[1];
+            $time       = strtotime(trim($matches[1]));
 //                $finish[$domains->name] = date('d-m-Y', $time);
-                $finish[$domains->id] = $time;
-            }
+            $finish[$domains->id] = $time;
+        }
 
         $this->updateExpire($finish);
     }
@@ -59,12 +59,12 @@ class ExpiryScannerProcessing extends CoreRepository
             || preg_match('/^(xn\-\-[\p{L}\d\-]+)\.(xn\-\-(?:[a-z\d-]+\.?1?)+)$/ui', $this->domain, $matches)
         ) {
             $this->subDomain = $matches[1];
-            $this->TLDs = $matches[2];
+            $this->TLDs      = $matches[2];
         } else
             throw new \InvalidArgumentException("Invalid $domain syntax");
 
         if ($this->isValid($this->TLDs) == true) {
-            $isTld = $this->TLDs;
+            $isTld        = $this->TLDs;
             $whois_server = $this->servers->$isTld[0];
 
             // If TLDs have been found
@@ -74,7 +74,7 @@ class ExpiryScannerProcessing extends CoreRepository
                 if (preg_match("/^https?:\/\//i", $whois_server)) {
 
                     // curl session to get whois reposnse
-                    $ch = curl_init();
+                    $ch  = curl_init();
                     $url = $whois_server . $this->subDomain . '.' . $this->TLDs;
                     curl_setopt($ch, CURLOPT_URL, $url);
                     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0);
@@ -109,10 +109,8 @@ class ExpiryScannerProcessing extends CoreRepository
                     // Checking whois server for .com and .net
                     if ($this->TLDs == 'com' || $this->TLDs == 'net') {
                         while (!feof($fp)) {
-                            $line = trim(fgets($fp, 128));
-
-                            $string .= $line;
-
+                            $line    = trim(fgets($fp, 128));
+                            $string  .= $line;
                             $lineArr = explode(":", $line);
 
                             if (strtolower($lineArr[0]) == 'whois server') {
@@ -145,7 +143,7 @@ class ExpiryScannerProcessing extends CoreRepository
                 }
 
                 $string_encoding = mb_detect_encoding($string, "UTF-8, ISO-8859-1, ISO-8859-15", true);
-                $string_utf8 = mb_convert_encoding($string, "UTF-8", $string_encoding);
+                $string_utf8     = mb_convert_encoding($string, "UTF-8", $string_encoding);
 
                 return htmlspecialchars($string_utf8, ENT_COMPAT, "UTF-8", true);
             } else {
@@ -193,7 +191,7 @@ class ExpiryScannerProcessing extends CoreRepository
         if ($finish) {
             foreach ($finish as $key => $var) {
                 $domains = Model::find($key);
-                if ($var != 0){
+                if ($var != 0) {
                     $domains->expiry = $var;
                     $domains->save();
                 }

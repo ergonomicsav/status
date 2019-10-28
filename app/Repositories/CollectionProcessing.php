@@ -12,7 +12,7 @@ class CollectionProcessing extends DomainsScannerProcessing
     public function processing($domains)
     {
         $dms = $domains->pluck('domain', 'id');
-        $mh = curl_multi_init();
+        $mh  = curl_multi_init();
         foreach ($dms as $key => $value) {
             $ch[$key] = curl_init($value);
             curl_setopt($ch[$key], CURLOPT_NOBODY, true);
@@ -35,10 +35,10 @@ class CollectionProcessing extends DomainsScannerProcessing
 // Собираем массив для БД
         foreach (array_keys($ch) as $key) {
             $reportArray[] = [
-                'httpCode' => curl_getinfo($ch[$key], CURLINFO_HTTP_CODE),
+                'httpCode'     => curl_getinfo($ch[$key], CURLINFO_HTTP_CODE),
                 'redirect_url' => curl_getinfo($ch[$key], CURLINFO_REDIRECT_URL),
-                'id' => $key,
-                'ip' => curl_getinfo($ch[$key], CURLINFO_PRIMARY_IP)
+                'id'           => $key,
+                'ip'           => curl_getinfo($ch[$key], CURLINFO_PRIMARY_IP)
             ];
 
             curl_multi_remove_handle($mh, $ch[$key]);
