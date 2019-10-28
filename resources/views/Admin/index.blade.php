@@ -1,21 +1,32 @@
 @extends('Admin.layout')
 
 @section('content_header')
-    <h1>Список доменов</h1>
-    <dl class="dl-horizontal">
-        <dt>Дата</dt>
-        <dd>{{$timemonitoring[1]}}</dd>
-        <dt>Время сканироания</dt>
-        <dd>{{$timemonitoring[0]}}</dd>
-        <dd><a href="{{route('domains.index')}}" class="btn btn-success btn-sm">Обновить</a></dd>
-    </dl>
+    {{--    <h1>Список доменов</h1>--}}
+    <div class="form-inline" style="margin-bottom: 20px">
+        <div class="form-group">
+            <a href="{{route('domains.create')}}" class="btn btn-success" title="Добавить домен">Добавить домен</a>
+        </div>
+        <div class="form-group">
+            <a href="{{route('domains.create')}}" class="btn btn-success" title="Добавить домен">Обновить период регистрации доменов</a>
+        </div>
+        <div class="form-group">
+            <a href="{{route('domains.create')}}" class="btn btn-success" title="Добавить домен">Обновить SSL статус</a>
+        </div>
+        <dl class="dl-horizontal form-group pull-right">
+            <dt>Дата</dt>
+            <dd>{{$timemonitoring[1]}}</dd>
+            <dt>Время сканироания</dt>
+            <dd>{{$timemonitoring[0]}}</dd>
+            <dd><a href="{{route('domains.index')}}" class="btn btn-success btn-sm">Обновить</a></dd>
+        </dl>
+    </div>
+
 
 @stop
 
 @section('content')
-    <div class="form-group">
-        <a href="{{route('domains.create')}}" class="btn btn-success" title="Добавить домен">Добавить</a>
-    </div>
+
+
     <table id="example" class="display compact" style="width:100%">
         <thead>
         <tr>
@@ -37,7 +48,8 @@
                 <td title="ip домена">{{$domain['ip']}}</td>
                 <td><a href="#" class="{{$domain['statusStyle']}}" title="Статус ответа">{{$domain['status']}}</a></td>
                 <td title="Конечный сайт">{{$domain['redirect_url']}}</td>
-                <td class="{{$domain['expirystyle']}}" title="Дата окончания срока регистрации домена">{{$domain['expiry']}}</td>
+                <td class="{{$domain['expirystyle']}}"
+                    title="Дата окончания срока регистрации домена">{{$domain['expiry']}}</td>
                 @if($domain['ssltime'] == '0')
                     <td {{$domain['sslstyle']}} title="Без сертификата">N/A</td>
                 @else
