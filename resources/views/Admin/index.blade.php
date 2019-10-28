@@ -2,7 +2,7 @@
 
 @section('content_header')
     {{--    <h1>Список доменов</h1>--}}
-    <div class="form-inline" style="margin-bottom: 20px">
+    <div class="form-inline">
         <div class="form-group">
             <a href="{{route('domains.create')}}" class="btn btn-success" title="Добавить домен">Добавить домен</a>
         </div>
@@ -12,13 +12,11 @@
         <div class="form-group">
             <a href="#" class="btn btn-success" title="Добавить домен">Обновить SSL статус</a>
         </div>
-        <dl class="dl-horizontal form-group pull-right">
-            <dt>Дата</dt>
-            <dd>{{$timemonitoring[1]}}</dd>
-            <dt>Время сканироания</dt>
-            <dd>{{$timemonitoring[0]}}</dd>
-            <dd><a href="{{route('domains.index')}}" class="btn btn-success btn-sm">Обновить</a></dd>
-        </dl>
+        <div class="form-group pull-right">
+            <span>{{$timemonitoring[1]}}</span>
+            <span><strong>{{$timemonitoring[0]}}</strong></span>
+            <a href="{{route('domains.index')}}" class="btn btn-success btn-sm">Обновить</a>
+        </div>
     </div>
 
 
