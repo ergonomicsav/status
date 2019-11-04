@@ -7,24 +7,21 @@
             <a href="{{route('domains.create')}}" class="btn btn-success" title="Добавить домен">Добавить домен</a>
         </div>
         <div class="form-group">
-            <a href="/expiry" class="btn btn-success expiry-ssl-restart" title="Добавить домен">Обновить Expire domain</a>
+            <a href="/expiry" class="btn btn-success expiry-ssl-restart" title="Добавить домен">Обновить Expire
+                domain</a>
         </div>
         <div class="form-group">
             <a href="/ssl" class="btn btn-success expiry-ssl-restart" title="Добавить домен">Обновить SSL статус</a>
         </div>
-        <div  class="form-group pull-right">
+        <div class="form-group pull-right">
             <span>{{$timemonitoring[1]}}</span>
             <span><strong>{{$timemonitoring[0]}}</strong></span>
             <a href="{{route('domains.index')}}" class="btn btn-success">Обновить</a>
         </div>
     </div>
-
-
 @stop
 
 @section('content')
-
-
     <table id="example" class="display compact" style="width:100%">
         <thead>
         <tr>
@@ -35,7 +32,7 @@
             <th>URI редирект</th>
             <th>Срок действия</th>
             <th>SSL Статус</th>
-            <th>Действия</th>
+            <th class="text-center">Действия</th>
         </tr>
         </thead>
         <tbody>
@@ -53,15 +50,19 @@
                 @else
                     <td class="{{$domain['sslstyle']}}" title="Дата окончания сертификата">{{$domain['ssltime']}}</td>
                 @endif
-                <td><a href="{{route('domains.edit', $domain['id'])}}" class="far fa-edit" title="Редактировать"></a>
+                <td class="project-actions text-right">
+                    <a href="{{route('domains.edit', $domain['id'])}}" class="btn btn-info btn-sm"
+                       title="Редактировать"><i class="fas fa-pencil-alt"></i> Edit</a>
                     <form method="post" action="{{route('domains.destroy', $domain['id'])}}">
                         @method('delete')
                         @csrf
                         <button type="submit" onclick="return confirm('Ты уверен, что это надо удалить?')"
-                                class="delete" title="Удалить"><i class="far fa-trash-alt"></i></button>
+                                class="btn btn-danger btn-sm" title="Удалить"><i class="fas fa-trash"></i> Delete
+                        </button>
                     </form>
                     <a href="{{route('home', ['leftDisk' => 'logs', 'leftPath' => $domain['namefolder']])}}"
-                       class="far fa-folder-open" title="Перейти в файловый менеджер"></a>
+                       class="btn btn-primary btn-sm" title="Перейти в файловый менеджер"><i class="fas fa-folder"></i>
+                        View</a>
                 </td>
             </tr>
         @endforeach
@@ -75,7 +76,7 @@
             <th>URI редирект</th>
             <th>Срок действия</th>
             <th>SSL Статус</th>
-            <th>Действия</th>
+            <th class="text-center">Действия</th>
         </tr>
         </tfoot>
     </table>
