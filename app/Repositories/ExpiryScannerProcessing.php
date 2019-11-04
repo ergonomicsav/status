@@ -27,7 +27,7 @@ class ExpiryScannerProcessing extends CoreRepository
 
     public function processing(Model $domains)
     {
-
+        $finish = [];
         $whois_string = $this->parser($domains->name);
         if ($whois_string == "Domain name isn't valid!") {
 //                $finish[$domains->name] = 'ручками';

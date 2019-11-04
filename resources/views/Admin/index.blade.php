@@ -7,12 +7,12 @@
             <a href="{{route('domains.create')}}" class="btn btn-success" title="Добавить домен">Добавить домен</a>
         </div>
         <div class="form-group">
-            <a href="/expiry" class="btn btn-success" title="Добавить домен">Обновить Expire domain</a>
+            <a href="/expiry" class="btn btn-success expiry-ssl-restart" title="Добавить домен">Обновить Expire domain</a>
         </div>
         <div class="form-group">
-            <a href="/ssl" class="btn btn-success" title="Добавить домен">Обновить SSL статус</a>
+            <a href="/ssl" class="btn btn-success expiry-ssl-restart" title="Добавить домен">Обновить SSL статус</a>
         </div>
-        <div class="form-group pull-right">
+        <div  class="form-group pull-right">
             <span>{{$timemonitoring[1]}}</span>
             <span><strong>{{$timemonitoring[0]}}</strong></span>
             <a href="{{route('domains.index')}}" class="btn btn-success">Обновить</a>

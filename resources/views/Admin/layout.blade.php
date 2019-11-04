@@ -18,4 +18,22 @@
             $('#example').DataTable();
         });
     </script>
+    <script>
+        window.onload = function()  {
+            let loader = document.querySelector('.pace');
+            let box = document.querySelector('.form-inline');
+
+            if (box) {
+                box.addEventListener('click', (el) => {
+                    if(el.target.classList.contains('expiry-ssl-restart')) {
+                        loader.classList.remove('pace-inactive');
+                        loader.classList.add('pace-active');
+                    }
+                })
+            }
+
+        }
+
+    </script>
+
 @stop
