@@ -22,6 +22,7 @@ Route::group(['namespace' => 'Status'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/ssl', 'SslController@execute');
     Route::get('/expiry', 'ExpiryController@execute');
+    Route::get('/domain/{name}/{other?}', 'SingleDomainController@index');
     Route::resources([
         '/domains' => 'DomainController'
     ]);
