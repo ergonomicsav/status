@@ -29,10 +29,10 @@ class Kernel extends ConsoleKernel
             ->everyFifteenMinutes()
             ->appendOutputTo('public/vendor/error.log');
         $schedule->command('command:ssl')
-            ->dailyAt('10:15')
+            ->dailyAt('7:30')
             ->appendOutputTo('public/vendor/error.log');
         $schedule->command('command:expiry')
-            ->dailyAt('10:30')
+            ->dailyAt('8:30')
             ->appendOutputTo('public/vendor/error.log');
         $schedule->command('command:botmonitoring')
             ->hourlyAt(17)

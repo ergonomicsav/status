@@ -16,6 +16,10 @@
     <script src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
     <script>$(document).ready(function () {
             $('#example').DataTable();
+            $('#nginx').DataTable();
+            $('#nginxerror').DataTable();
+            $('#system').DataTable();
+            $('#letsencrypt').DataTable();
         });
     </script>
     <script>

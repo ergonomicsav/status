@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Status;
 
+use App\Repositories\ParsingArrayLogs;
 use Illuminate\Http\Request;
 
 class SingleDomainController extends BaseController
 {
+
+    private $parsingArrayLogs;
+
     /**
      * Create a new controller instance.
      *
@@ -14,10 +18,12 @@ class SingleDomainController extends BaseController
     public function __construct()
     {
         $this->middleware('auth');
+        $this->parsingArrayLogs = app(ParsingArrayLogs::class);
     }
 
-    public function index($nameDomain = null)
+    public function index(int $id = null)
     {
-        return view('Admin.domain', compact('nameDomain'));
+        $arrayLogs = $this->parsingArrayLogs->getArrLogs($id);
+        return view('Admin.domain', ['letsencrypt' => $arrayLogs['Letsencrypt'], 'access' => $arrayLogs['Nginx']['access'], 'error' => $arrayLogs['Nginx']['error'], 'system' => null]);
     }
 }

@@ -41,7 +41,7 @@
                 <td>{{$domain['id']}}</td>
                 <td><a href="{{$domain['domain']}}" target="_blank" title="Перейти на сайт">{{$domain['name']}}</a></td>
                 <td title="ip домена">{{$domain['ip']}}</td>
-                <td><a href="/domain/{{$domain['name']}}" class="{{$domain['statusStyle']}}" title="Статус ответа">{{$domain['status']}}</a></td>
+                <td><a href="{{route('domain', $domain['id'])}}" class="{{$domain['statusStyle']}}" title="Статус ответа">{{$domain['status']}}</a></td>
                 <td title="Конечный сайт">{{$domain['redirect_url']}}</td>
                 <td class="{{$domain['expirystyle']}}"
                     title="Дата окончания срока регистрации домена">{{$domain['expiry']}}</td>
