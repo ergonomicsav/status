@@ -143,7 +143,7 @@ button.delete {
 .card-primary:not(.card-outline) .card-header, .card-primary:not(.card-outline) .card-header a {
     color: #fff;
     font-size: 2rem;
-    padding: 2rem 10rem;
+    padding: 1.5rem 10rem;
 }
 
 
