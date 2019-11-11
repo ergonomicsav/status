@@ -17,9 +17,12 @@
     <script>$(document).ready(function () {
             $('#example').DataTable();
             $('#nginx').DataTable();
-            $('#nginxerror').DataTable();
+            $('#nginxaccess').DataTable();
             $('#system').DataTable();
             $('#letsencrypt').DataTable();
+            $('#phpfpm').DataTable();
+            $('#rsync').DataTable();
+            $('#authh').DataTable();
         });
     </script>
     <script>

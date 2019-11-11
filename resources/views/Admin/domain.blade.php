@@ -55,12 +55,14 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($error as $key => $log)
-                                    <tr>
-                                        <td>{{$key}}</td>
-                                        <td>{{$log}}</td>
-                                    </tr>
-                                @endforeach
+                                @if($error)
+                                    @foreach($error as $key => $log)
+                                        <tr>
+                                            <td>{{$key}}</td>
+                                            <td>{{$log}}</td>
+                                        </tr>
+                                    @endforeach
+                                @endif
                                 </tbody>
                                 <tfoot>
                                 <tr>
@@ -70,7 +72,7 @@
                                 </tfoot>
                             </table>
                             <h2>Access.log</h2>
-                            <table id="nginxerror" class="display compact" style="width:100%">
+                            <table id="nginxaccess" class="display compact" style="width:100%">
                                 <thead>
                                 <tr>
                                     <th>№</th>
@@ -78,12 +80,14 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($access as $key => $log)
-                                    <tr>
-                                        <td>{{$key}}</td>
-                                        <td>{{$log}}</td>
-                                    </tr>
-                                @endforeach
+                                @if($access)
+                                    @foreach($access as $key => $log)
+                                        <tr>
+                                            <td>{{$key}}</td>
+                                            <td>{{$log}}</td>
+                                        </tr>
+                                    @endforeach
+                                @endif
                                 </tbody>
                                 <tfoot>
                                 <tr>
@@ -122,17 +126,30 @@
                         </div>
                         <div class="tab-pane fade" id="custom-tabs-one-php" role="tabpanel"
                              aria-labelledby="custom-tabs-one-php-tab">
-                            Morbi turpis dolor, vulputate vitae felis non, tincidunt congue mauris. Phasellus volutpat
-                            augue
-                            id mi placerat mollis. Vivamus faucibus eu massa eget condimentum. Fusce nec hendrerit sem,
-                            ac
-                            tristique nulla. Integer vestibulum orci odio. Cras nec augue ipsum. Suspendisse ut velit
-                            condimentum, mattis urna a, malesuada nunc. Curabitur eleifend facilisis velit finibus
-                            tristique. Nam vulputate, eros non luctus efficitur, ipsum odio volutpat massa, sit amet
-                            sollicitudin est libero sed ipsum. Nulla lacinia, ex vitae gravida fermentum, lectus ipsum
-                            gravida arcu, id fermentum metus arcu vel metus. Curabitur eget sem eu risus tincidunt
-                            eleifend
-                            ac ornare magna.
+                            <table id="phpfpm" class="display compact" style="width:100%">
+                                <thead>
+                                <tr>
+                                    <th>№</th>
+                                    <th>Строки</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @if($phpfpm)
+                                    @foreach($phpfpm as $key => $log)
+                                        <tr>
+                                            <td>{{$key}}</td>
+                                            <td>{{$log}}</td>
+                                        </tr>
+                                    @endforeach
+                                @endif
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>№</th>
+                                    <th>Строкм</th>
+                                </tr>
+                                </tfoot>
+                            </table>
                         </div>
                         <div class="tab-pane fade" id="custom-tabs-one-mysql" role="tabpanel"
                              aria-labelledby="custom-tabs-one-mysql-tab">
@@ -144,12 +161,14 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($letsencrypt as $key => $log)
-                                    <tr>
-                                        <td>{{$key}}</td>
-                                        <td>{{$log}}</td>
-                                    </tr>
-                                @endforeach
+                                @if($letsencrypt)
+                                    @foreach($letsencrypt as $key => $log)
+                                        <tr>
+                                            <td>{{$key}}</td>
+                                            <td>{{$log}}</td>
+                                        </tr>
+                                    @endforeach
+                                @endif
                                 </tbody>
                                 <tfoot>
                                 <tr>
@@ -161,23 +180,57 @@
                         </div>
                         <div class="tab-pane fade" id="custom-tabs-one-rsync" role="tabpanel"
                              aria-labelledby="custom-tabs-one-rsync-tab">
-                            Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna, iaculis tempus
-                            turpis
-                            ac, ornare sodales tellus. Mauris eget blandit dolor. Quisque tincidunt venenatis vulputate.
-                            Morbi euismod molestie tristique. Vestibulum consectetur dolor a vestibulum pharetra. Donec
-                            interdum placerat urna nec pharetra. Etiam eget dapibus orci, eget aliquet urna. Nunc at
-                            consequat diam. Nunc et felis ut nisl commodo dignissim. In hac habitasse platea dictumst.
-                            Praesent imperdiet accumsan ex sit amet facilisis.
+                            <table id="rsync" class="display compact" style="width:100%">
+                                <thead>
+                                <tr>
+                                    <th>№</th>
+                                    <th>Строки</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @if($rsync)
+                                    @foreach($rsync as $key => $log)
+                                        <tr>
+                                            <td>{{$key}}</td>
+                                            <td>{{$log}}</td>
+                                        </tr>
+                                    @endforeach
+                                @endif
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>№</th>
+                                    <th>Строкм</th>
+                                </tr>
+                                </tfoot>
+                            </table>
                         </div>
                         <div class="tab-pane fade" id="custom-tabs-one-auth" role="tabpanel"
                              aria-labelledby="custom-tabs-one-auth-tab">
-                            Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna, iaculis tempus
-                            turpis
-                            ac, ornare sodales tellus. Mauris eget blandit dolor. Quisque tincidunt venenatis vulputate.
-                            Morbi euismod molestie tristique. Vestibulum consectetur dolor a vestibulum pharetra. Donec
-                            interdum placerat urna nec pharetra. Etiam eget dapibus orci, eget aliquet urna. Nunc at
-                            consequat diam. Nunc et felis ut nisl commodo dignissim. In hac habitasse platea dictumst.
-                            Praesent imperdiet accumsan ex sit amet facilisis.
+                            <table id="authh" class="display compact" style="width:100%">
+                                <thead>
+                                <tr>
+                                    <th>№</th>
+                                    <th>Строки</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @if($authh)
+                                    @foreach($authh as $key => $log)
+                                        <tr>
+                                            <td>{{$key}}</td>
+                                            <td>{{$log}}</td>
+                                        </tr>
+                                    @endforeach
+                                @endif
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>№</th>
+                                    <th>Строкм</th>
+                                </tr>
+                                </tfoot>
+                            </table>
                         </div>
                     </div>
                 </div>
