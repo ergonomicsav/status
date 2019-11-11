@@ -39,7 +39,7 @@ class ParsingArrayLogs extends CoreRepository
             $arr = $this->processing->running(new $class($directory, $nameFolder));
             $finishArr[$nameFolder] = $arr[$nameFolder];
         }
-//        $finishArr = Arr::collapse([$finishArr[0], $finishArr[1], $finishArr[2], $finishArr[3], $finishArr[4], $finishArr[5]]);
+        if (empty($finishArr)) abort(404);
         return $finishArr;
     }
 
