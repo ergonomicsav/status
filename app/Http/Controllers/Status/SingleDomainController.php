@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Status;
 
 use App\Repositories\ParsingArrayLogs;
-use Illuminate\Http\Request;
 
 class SingleDomainController extends BaseController
 {
@@ -24,6 +23,6 @@ class SingleDomainController extends BaseController
     public function index(int $id = null)
     {
         $arrayLogs = $this->parsingArrayLogs->getArrLogs($id);
-        return view('Admin.domain', ['letsencrypt' => $arrayLogs['Letsencrypt'], 'access' => $arrayLogs['Nginx']['access'], 'error' => $arrayLogs['Nginx']['error'], 'system' => null, 'phpfpm' => null, 'rsync' => null, 'authh' => null]);
+        return view('Admin.domain', ['letsencrypt' => $arrayLogs['Letsencrypt'], 'access' => $arrayLogs['Nginx']['access'], 'error' => $arrayLogs['Nginx']['error'], 'system' => $arrayLogs['Syslog'], 'phpfpm' => $arrayLogs['Phpfpm'], 'rsync' => $arrayLogs['Rsyncd'], 'authh' => $arrayLogs['Auth']]);
     }
 }

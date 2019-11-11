@@ -4,26 +4,21 @@
 namespace App\Repositories;
 
 
-class Auth implements Logs
+class Auth extends Handler implements Logs
 {
 
     public function getArrayLogs()
     {
         // TODO: Implement getArrayLogs() method.
-//        $arr     = $this->getFiles();
-//        $string  = '';
-//        $string2 = '';
-//
-//        foreach ($arr as $item) {
-//            if (strpos($item, 'error')) {
-//                $string                                .= $this->getStrings($item);
-//                $finishArr[$this->nameFolder]['error'] = explode("\n", $string);
-//            } else {
-//                $string2                                .= $this->getStrings($item);
-//                $finishArr[$this->nameFolder]['access'] = explode("\n", $string2);
-//            }
-//        }
+        $arr    = $this->getFiles();
+        $string = '';
+
+        foreach ($arr as $item) {
+            $string                       .= $this->getStrings($item);
+            $finishArr[$this->nameFolder] = explode("\n", $string);
+
+        }
 //        dd($finishArr);
-//        return $finishArr;
+        return $finishArr;
     }
 }
