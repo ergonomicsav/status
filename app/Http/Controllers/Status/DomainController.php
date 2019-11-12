@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Status;
 use App\Http\Requests\StatusDomainStoreRequest;
 use App\Http\Requests\StatusDomainUpdateRequest;
 use App\Models\Domain;
+use App\Repositories\DirectoryManager;
 use App\Repositories\ExpiryScannerProcessing;
 use App\Repositories\ModelProcessing;
 use Illuminate\Support\Facades\Cache;
-use \Storage;
 use App\Repositories\StatusDomainRepository;
 use App\Repositories\SslScannerProcessing;
 
@@ -18,15 +18,17 @@ class DomainController extends BaseController
     private $sslScannerProcessing;
     private $expiryScannerProcessing;
     private $modelProcessing;
+    private $directoryManager;
 
     public function __construct()
     {
         $this->middleware('auth');
 //        $this->statusDomainRepository = new StatusDomainRepository();
-        $this->statusDomainRepository = app(StatusDomainRepository::class);
-        $this->sslScannerProcessing = app(SslScannerProcessing::class);
+        $this->statusDomainRepository  = app(StatusDomainRepository::class);
+        $this->sslScannerProcessing    = app(SslScannerProcessing::class);
         $this->expiryScannerProcessing = app(ExpiryScannerProcessing::class);
-        $this->modelProcessing = app(ModelProcessing::class);
+        $this->modelProcessing         = app(ModelProcessing::class);
+        $this->directoryManager        = app(DirectoryManager::class);
     }
 
     /**
@@ -38,7 +40,7 @@ class DomainController extends BaseController
     public function index()
     {
         $timemonitoring = explode(' ', Cache::get('new_time'));
-        $domains = $this->statusDomainRepository->getDomains();
+        $domains        = $this->statusDomainRepository->getDomains();
         if (empty($domains)) abort(404);
 
         return view('Admin.index', compact('domains', 'timemonitoring'));
@@ -63,11 +65,11 @@ class DomainController extends BaseController
     public function store(StatusDomainStoreRequest $request)
     {
         $valueArr = $this->statusDomainRepository->storeDomain($request);
-        $domain = Domain::create($valueArr);
+        $domain   = Domain::create($valueArr);
         $this->sslScannerProcessing->processing($domain);
         $this->expiryScannerProcessing->processing($domain);
         $this->modelProcessing->processing($domain);
-        Storage::disk('logs')->makeDirectory($valueArr['namefolder']);
+        $this->directoryManager->createDirectories($valueArr['namefolder']);
         return redirect()->route('domains.index');
     }
 
@@ -94,11 +96,7 @@ class DomainController extends BaseController
     public function update(StatusDomainUpdateRequest $request, Domain $domain)
     {
         $updateDomain = $this->statusDomainRepository->updateDomain($request);
-//        dd($updateDomain, $domain);
-        if ($updateDomain['namefolder'] != $domain->namefolder){
-            Storage::disk('logs')->makeDirectory($updateDomain['namefolder']);
-            Storage::disk('logs')->deleteDirectory($domain->namefolder);
-        }
+        $this->directoryManager->updateDirectories($domain->namefolder, $updateDomain['namefolder']);
         $domain->update($updateDomain);
         return redirect()->route('domains.index');
     }
@@ -111,8 +109,7 @@ class DomainController extends BaseController
      */
     public function destroy(Domain $domain)
     {
-//        $dmName = $domain->getAttribute('name');
-        Storage::disk('logs')->deleteDirectory($domain->namefolder);
+        $this->directoryManager->removeDirectories($domain->namefolder);
         $domain->delete();
         return redirect()->route('domains.index');
     }
