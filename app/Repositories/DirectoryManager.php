@@ -26,7 +26,7 @@ class DirectoryManager
 
     public function updateDirectories($oldNameFolder, $newNameFolder)
     {
-        if ($newNameFolder == $oldNameFolder){
+        if ($newNameFolder != $oldNameFolder){
             $this->storage->deleteDirectory($oldNameFolder);
             foreach ($this->dir as $item) {
                 $path = $newNameFolder . $item;
