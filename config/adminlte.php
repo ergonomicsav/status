@@ -259,15 +259,15 @@ return [
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
 //                    'location' => '//cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js',
-                    'location' => '//status.local/vendor/adminlte/plugins/DataTables-1.10.20/js/datatables.js',
+                    'location' => 'vendor/adminlte/plugins/DataTables-1.10.20/js/datatables.js',
                 ],
                 [
                     'type' => 'css',
-                    'asset' => false,
+                    'asset' => true,
 //                    'location' => '//cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css',
-                    'location' => '//status.local/vendor/adminlte/plugins/DataTables-1.10.20/css/datatables.css',
+                    'location' => 'vendor/adminlte/plugins/DataTables-1.10.20/css/datatables.css',
                 ],
             ],
         ],
@@ -289,7 +289,7 @@ return [
         ],
         [
             'name' => 'Chartjs',
-            'active' => true,
+            'active' => false,
             'files' => [
                 [
                     'type' => 'js',
