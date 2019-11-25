@@ -17,7 +17,7 @@ class ExpiryScannerProcessing extends CoreRepository
 
     public function __construct()
     {
-        $this->servers = json_decode(Storage::get('whois.servers.json'));
+        $this->servers = json_decode(Storage::get('public/whois.servers.json'));
     }
 
     protected function getModelClass()
