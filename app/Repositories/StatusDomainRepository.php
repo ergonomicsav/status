@@ -82,7 +82,7 @@ class StatusDomainRepository extends CoreRepository
     {
         if ($pp['status'] == 301 || $pp['status'] == 302 || $pp['status'] == 303) {
             $pp['statusStyle'] = 'btn btn-info btn-block';
-        } elseif ($pp['status'] == 403 || $pp['status'] == 504 || $pp['status'] == 0) {
+        } elseif ($pp['status'] == 403 || $pp['status'] == 504 || $pp['status'] == 503 || $pp['status'] == 0) {
             $pp['statusStyle'] = 'btn btn-danger btn-block';
         } else {
             $pp['statusStyle'] = 'btn btn-success btn-block';

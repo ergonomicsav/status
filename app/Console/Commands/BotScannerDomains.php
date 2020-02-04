@@ -39,7 +39,7 @@ class BotScannerDomains extends Command
      */
     public function handle()
     {
-        $arrDomains = Domain::whereNotIn('status', [200, 301])->get();
+        $arrDomains = Domain::whereNotIn('status', [200, 301, 503])->get();
         $arr = $arrDomains->sortByDesc('status')->pluck('status', 'domain');
         $message = '';
         $i =1;
